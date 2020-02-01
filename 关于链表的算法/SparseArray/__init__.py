@@ -1,6 +1,19 @@
 import gc
 
+"""
+稀疏数组应用场景：
+    当数组size很大而空间利用率很低时，应使用稀疏数组来存储
+    
+    下面的实现的稀疏数组0行0列都没用来存储数据，留做存储row_size等其他数据
+    
+    一个稀疏数组由多个行链表组成，一个行链表由多个节点构成
+    
+    :author: Rlyslata
+    :date: 2020/2/1
+"""
 
+
+# 节点类
 class ArrayEntry:
     def __init__(self, columnNumber=0, nextEntry=None, entry=0):
         # 所处的列数
@@ -11,6 +24,7 @@ class ArrayEntry:
         self.entry = entry
 
 
+# 行链表类
 class ArrayRow:
     def __init__(self, rowNumber=0, rowSentinel=ArrayEntry(), nextRow=None):
         # 稀疏数组所处的行
@@ -23,6 +37,7 @@ class ArrayRow:
         self.columnSize = 0
 
 
+# 稀疏数组类
 class SparseArray:
     def __init__(self, sentinel=ArrayRow(), rowSize=0, columnSize=0):
         # sentinel row的头指针
@@ -110,6 +125,6 @@ if __name__ == "__main__":
     print(sparse.setEntry(2, 2, 22))
     print(sparse.getEntry(2, 2))
 
-    print(sparse.deleteEntry(2,2))
-    print(sparse.deleteEntry(2,3))
+    print(sparse.deleteEntry(2, 2))
+    print(sparse.deleteEntry(2, 3))
     print(sparse.getEntry(2, 2))

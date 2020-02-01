@@ -11,6 +11,7 @@ class LinkedList(Node):
     def __init__(self):
         super(LinkedList, self).__init__(0, None)
         self.size = 0
+        # 尾指针、头指针（哨兵）
         self.tail = self.sentinel = Node(value=self.value, Next=None)
 
     # 尾部追加
@@ -19,6 +20,7 @@ class LinkedList(Node):
         self.tail = self.tail.next
         self.size += 1
 
+    # 打印函数
     def __str__(self):
         cell = self.sentinel.next
         while cell:
