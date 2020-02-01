@@ -111,10 +111,34 @@ class SparseArray:
             delete = row_sentinel.nextEntry
             after_delete = row_sentinel.nextEntry.nextEntry
             row_sentinel.nextEntry = after_delete
+            # 如果 列被删除后，该行已没有列，删除该行
+            if after_delete is None and row_sentinel.columnNumber == 0:
+                row.nextRow = None
             del delete
             gc.collect()
             return True
 
+
+"""
+稀疏矩阵加法：
+    遍历两个矩阵行，
+    while arr1 and arr2:
+        if arr1.rowNum>arr2.rowNum : add arr2 to result,arr2=arr2.nextRow
+        elif arr1.rowNum<arr2.rowNum : add arr1 to result,arr1 = arr1.nextRow
+        else add arr1[rowNum] + arr2[rowNum] to result,arr1 = arr1.nextRow,arr2=arr2.nextRow
+    
+    add arr1 remaining to result
+    add arr2 remaining to result
+    
+    
+稀疏矩阵乘法：
+    对与矩阵arr1*arr2，由与 要遍历arr2的每一列，而列不能迭代，
+    我们可以将arr2转置，转制后的矩阵arr2的一行就是转置之前的一列，
+    若entry默认值为零，类似加法，乘法可计算如下：
+        遍历arr1，与arr2的转置，
+            若对于arr1.rowNum != arr2转置.rowNum，点（arr1.rowNum，arr2转置.rowNum）为0
+            若对于arr1.rowNum == arr2转置.rowNum，则点（arr1.rowNum，arr2转置.rowNum）为对应项乘积之和
+"""
 
 if __name__ == "__main__":
     sparse = SparseArray()

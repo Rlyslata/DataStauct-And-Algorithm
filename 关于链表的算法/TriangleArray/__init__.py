@@ -2,6 +2,10 @@ import time
 
 from pymysql import Date
 
+"""
+    应用场景：数组对称
+"""
+
 
 class TriangleArray:
     def __init__(self):
@@ -41,3 +45,9 @@ if __name__ == "__main__":
     print(tri.get(1, 1))
     print(tri.get(2, 0))
     print(tri.get(2, 1))
+
+"""
+python 获取可读时间
+
+time.ctime()或time.ctime(time.time())或time.asctime(time.localtime(time.time()))
+"""
