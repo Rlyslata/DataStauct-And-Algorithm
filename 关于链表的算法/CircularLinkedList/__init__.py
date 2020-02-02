@@ -1,6 +1,6 @@
 # 链表节点类
 class Node:
-    def __init__(self, value, Next):
+    def __init__(self, value=0, Next=None):
         self.value = value
         self.next = Next
 
