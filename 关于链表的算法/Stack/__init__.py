@@ -191,6 +191,7 @@ class Stack(CircularLinkedList.LinkedList):
                     tmp = stack_tmp.pop()
                     if not skipped and tmp == min_:
                         # 遇到min_时应跳过
+                        tmp = stack_.pop()
                         stack_.push(stack_tmp.pop())
                         skipped = True
                     else:
