@@ -1,0 +1,26 @@
+回溯算法：
+    思想：利用递归思想寻找复杂问题的最佳解决方案。这些递归算法逐步建立局部解决方案。当发现某局部解决方案无法获得可行方案是，放弃这个方案，立即回溯。
+
+    应用场景：对于一个问题，当可以逐渐建立它局部的解决方案，并且有时可以快速的发现某个局部方案不行时，回溯算法十分有用。
+
+    一般回溯算法的伪代码：
+    Boolean: lead_to_solution(Solution: test_solution):
+        # 如果我们已经判断出这个局部解不能得到完整解时，返回False
+        if <test_solution 不能得到完整解>: 返回False
+
+        # 如果这是完整解，返回True
+        if <test_solution 已经是完整解>: 返回True
+
+        # 执行到这里，说明当前解仍不是完整解，需要进一步扩展
+        Loop<在所有可能test_solution的扩展上执行操作>:
+            <扩展test_solution>
+
+            # 通过递归检查刚才扩展得到的解是否可行
+            if <lead_to_solution(扩展的test_solution)>: 返回True
+
+            # 执行到这里说明扩展的解不可行，回溯到上一步（撤销扩展）
+            <撤销扩展>
+        EndLoop
+
+        # 执行到了这一步，说明这个局部解test_solution 的任何扩展都不能获得可行解，放弃该解
+        return False
