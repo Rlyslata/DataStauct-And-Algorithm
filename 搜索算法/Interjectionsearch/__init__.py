@@ -14,7 +14,12 @@ def interjection_search(array, target):
         # 检查是否还在搜索范围内
         if target < array[min_] or target > array[max_]:
             return -1
-        mid = min_ + (max_ - min_) * (target - array[min_]) // (array[max_] - array[min_])
+        # 检查除数为零
+        if array[min_] == array[max_]:
+            mid = min_
+        else:
+            mid = min_ + (max_ - min_) * (target - array[min_]) // (array[max_] - array[min_])
+
         if target == array[mid]:
             return mid
         elif target < array[mid]:
@@ -25,5 +30,6 @@ def interjection_search(array, target):
 
 
 if __name__ == "__main__":
-    seq = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
-    assert interjection_search(seq, 3) == -1, "未找到"
+    seq = [2,2]
+    print(interjection_search(seq,2))
+    # assert interjection_search(seq, 1) == 0, "未找到"
